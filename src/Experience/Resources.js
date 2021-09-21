@@ -51,12 +51,12 @@ export default class Resources extends EventEmitter {
   }
 
   onFinish() {
-    console.log("done loading");
+    // console.log("done loading");
   }
 
   onLoading(itemsUrl, itemsLoaded, itemsTotal) {
-    const progressRatio = itemsLoaded / itemsTotal;
-    console.log(progressRatio);
+    // const progressRatio = itemsLoaded / itemsTotal;
+    // console.log(progressRatio);
   }
 
   load() {

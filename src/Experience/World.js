@@ -1,4 +1,5 @@
 import Experience from "./Experience.js";
+import TextOutline from "./TextOutline.js";
 import * as THREE from "three";
 
 export default class World {
@@ -8,7 +9,8 @@ export default class World {
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
     this.resources.on("end", () => {
-      this.setDummy();
+      // this.setDummy();
+      this.setTextOutline();
     });
   }
 
@@ -22,6 +24,10 @@ export default class World {
       })
     );
     this.scene.add(cube);
+  }
+
+  setTextOutline() {
+    this.textOutline = new TextOutline();
   }
 
   resize() {}

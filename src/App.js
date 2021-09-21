@@ -13,7 +13,6 @@ function App() {
   return (
     <div className="App">
       <div className="experience"></div>
-      <h1>hello world</h1>
     </div>
   );
 }
