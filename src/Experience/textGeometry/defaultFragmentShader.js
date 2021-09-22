@@ -1,4 +1,4 @@
-#version 300 es
+const shader = `#version 300 es
 #define varying in
 out highp vec4 pc_fragColor;
 #define gl_FragColor pc_fragColor
@@ -17,7 +17,7 @@ precision highp int;
 uniform float opacity;
 uniform vec3 color;
 uniform sampler2D map;
-varying vec2 vUv
+varying vec2 vUv;
 float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
 }
@@ -28,4 +28,6 @@ void main() {
   float alpha = clamp(sigDist/fwidth(sigDist) + 0.5, 0.0, 1.0);
   gl_FragColor = vec4(color.xyz, alpha * opacity);
   if (gl_FragColor.a < 0.0001) discard;
-}
+}`;
+
+export default shader;

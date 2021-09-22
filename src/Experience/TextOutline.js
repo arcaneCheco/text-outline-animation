@@ -5,6 +5,8 @@ import createTextGeometry from "./textGeometry/index.js";
 import createMSDFShader from "./textGeometry/createMSDFShader.js";
 import particleVertexShader from "./shaders/textOutline/particleVertex.js";
 import particleFragmentShader from "./shaders/textOutline/particleFragment.js";
+import outlineVertexShader from "./textGeometry/outlineVertexShaderSimple.js";
+import outlineFragmentShader from "./textGeometry/outlineFragmentShaderSimple.js";
 
 export default class TextOutline {
   constructor() {
@@ -14,7 +16,8 @@ export default class TextOutline {
     this.time = this.experience.time;
     this.scene = this.experience.scene;
     this.setGeometry();
-    this.setMaterial();
+    // this.setMaterial();
+    this.setShaderMaterial();
     this.setMesh();
     this.setMouveEvents();
     this.setParticles();
@@ -43,6 +46,27 @@ export default class TextOutline {
         side: THREE.DoubleSide,
       })
     );
+  }
+
+  setShaderMaterial() {
+    this.gradientMap = this.resources.items.manifoldFontGradient;
+    this.material = new THREE.ShaderMaterial({
+      uniforms: {
+        opacity: { value: 1 },
+        uTime: { value: 0 },
+        uMouse: { value: new THREE.Vector2() },
+        viewport: {
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+        },
+        map: { value: this.fontTexture },
+        gradientMap: { value: this.gradientMap },
+        color: { value: new THREE.Color(0xffffff) },
+      },
+      vertexShader: outlineVertexShader,
+      fragmentShader: outlineFragmentShader,
+      side: THREE.DoubleSide,
+      transparent: true,
+    });
   }
 
   setMesh() {

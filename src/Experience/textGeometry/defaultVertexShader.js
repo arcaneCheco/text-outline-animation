@@ -1,4 +1,4 @@
-#version 300 es
+const shader = `#version 300 es
 #define attribute in
 #define varying out
 #define texture2D texture
@@ -15,4 +15,6 @@ varying vec2 vUv;
 void main() {
     vUv = uv;
     gl_Position = projectionMatrix * modelViewMatrix * position;
-}
+}`;
+
+export default shader;
