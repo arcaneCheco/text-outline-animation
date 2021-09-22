@@ -5,12 +5,9 @@ var createIndices = require("quad-indices");
 var vertices = require("./lib/vertices");
 var utils = require("./lib/utils");
 
-// var Base = THREE.BufferGeometry;
-
 class TextGeometry extends THREE.BufferGeometry {
   constructor(opt) {
     super();
-    // let Base = THREE.BufferGeometry;
     if (typeof opt === "string") {
       opt = { text: opt };
     }

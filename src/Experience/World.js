@@ -33,8 +33,8 @@ export default class World {
   resize() {}
 
   update() {
-    if (this.dummy) {
-      this.dummy.update();
+    if (this.textOutline) {
+      this.textOutline.update();
     }
   }
 
